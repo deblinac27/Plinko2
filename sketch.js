@@ -52,7 +52,7 @@ function draw() {
      
    }
    
-  /*if(frameCount%60===0){
+  if(frameCount%60===0){
      particles.push(new Particle(random(width/2-30, width/2+30), 10,10));
      score++;
    }
@@ -60,7 +60,7 @@ function draw() {
   for (var j = 0; j < particles.length; j++) {
    
      particles[j].display();
-   }*/
+   }
 
    for (var k = 0; k < divisions.length; k++) {
      
@@ -127,6 +127,5 @@ function mousePressed(){
   if(gameState!=="end"){
     count++
     particle = new Particle(mouseX, 10, 10, 10);
-    turn = turn + 1
   }
 }
