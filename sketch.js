@@ -8,7 +8,7 @@ var plinkos = [];
 var divisions = [];
 var divisionHeight=300;
 var score = 0;
-var particle;
+var particle = null;
 var turn = 0;
 var gameState = "start";
 var count = 0;
@@ -43,16 +43,34 @@ function setup() {
  
 function draw() {
   background("black");
+  textSize(20)
+   text("Score : "+score,20,30);
+   text("500", 10, 520);
+   text("500", 91, 520);
+   text("500", 174, 520);
+   text("500", 257, 520);
+   text("100", 340, 520);
+   text("100", 423, 520);
+   text("100", 506, 520);
+   text("200", 589, 520);
+   text("200", 660, 520);
+   text("200", 740, 520);
+
   Engine.update(engine);
   
   ground.display();
+  if(gameState === "end"){
+    textSize(20)
+    text("GAME OVER",400,400);
+   }
+
    for (var i = 0; i < plinkos.length; i++) {
      
      plinkos[i].display();
      
    }
    
-  if(frameCount%60===0){
+  /*if(frameCount%60===0){
      particles.push(new Particle(random(width/2-30, width/2+30), 10,10));
      score++;
    }
@@ -66,19 +84,8 @@ function draw() {
      
      divisions[k].display();
    }
-
-   textSize(20)
-   text("Score : "+score,20,30);
-   text("500", 10, 520);
-   text("500", 91, 520);
-   text("500", 174, 520);
-   text("500", 257, 520);
-   text("100", 340, 520);
-   text("100", 423, 520);
-   text("100", 506, 520);
-   text("200", 589, 520);
-   text("200", 660, 520);
-   text("200", 740, 520);
+*/
+   
 
    if(particle!==null)
    {
@@ -94,7 +101,7 @@ function draw() {
             gameState = "end";
         }
 
-        if(particle.body.position.x > 301 && particle.body.position.x < 600)
+        else if(particle.body.position.x > 301 && particle.body.position.x < 600)
         {
           score = score+100;
           particle = null;
@@ -102,7 +109,7 @@ function draw() {
             gameState = "end";
         }
 
-        if(particle.body.position.x > 601 && particle.body.position.x < 900)
+        else if(particle.body.position.x > 601 && particle.body.position.x < 900)
         {
           score = score+200;
           particle = null;
@@ -112,15 +119,12 @@ function draw() {
       }
    }
 
-   if(turn === 5){
+   /*if(turn === 5){
      gameState = "end";
+   }*/
+   for(var k = 0; k < divisions.length; k++){
+     divisions[k].display();
    }
-
-   if(gameState === "end"){
-    textSize(20)
-    text("GAME OVER",400,400);
-   }
-
 }
 
 function mousePressed(){
